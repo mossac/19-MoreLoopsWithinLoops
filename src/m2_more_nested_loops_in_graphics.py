@@ -4,8 +4,8 @@ in the context of TWO-DIMENSIONAL GRAPHICS.
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Aidan Moss.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -50,12 +50,31 @@ def draw_upside_down_wall(rectangle, n, window):
     and n is nonnegative.
     """
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #     Some tests are already written for you (above).
     # -------------------------------------------------------------------------
+    cornerupperx=rectangle.get_upper_left_corner().x
+    constantx = rectangle.get_upper_left_corner().x - rectangle.get_lower_right_corner().x
+    constanty = rectangle.get_upper_left_corner().y - rectangle.get_lower_right_corner().y
+    cornerlowerx = rectangle.get_lower_right_corner().x
+    cornerlowery = rectangle.get_lower_right_corner().y
+    corneruppery = rectangle.get_upper_left_corner().y
+    rectangle.attach_to(window)
+    for k in range(n):
+        cornerupperx = rectangle.get_lower_left_corner().x+ int(round(.5(k)(constantx)))
+        cornerlowerx = rectangle.get_lower_right_corner().x + int(round(.5(k)(constantx)))
+        for j in range(k):
+
+            cornerupperx= constantx + cornerupperx
+            cornerlowerx= constantx + cornerlowerx
+            rectangles =rg.Rectangle(rg.Point(cornerupperx,corneruppery),rg.Point(cornerlowerx,cornerlowery))
+            rectangles.attach_to(window)
+            window.render(.5)
+        cornerlowery = cornerlowery + constanty
+        corneruppery = corneruppery + constanty
 
 
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
-# -----------------------------------------------------------------------------
+# ------------------er-----------------------------------------------------------
 main()
